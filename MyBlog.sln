@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35410.144 d17.12
+VisualStudioVersion = 17.12.35410.144
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebApp", "BlazorWebApp\BlazorWebApp\BlazorWebApp.csproj", "{367ADEC9-6A94-4E2F-89A4-9A79F75AB909}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "Data\Data.csproj", "{802733EC-2B76-4335-A681-B26281DD0A05}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Models", "Data.Models\Data.Models.csproj", "{AAFF5223-B934-4FE7-BB0B-125085677CD4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedComponents", "SharedComponents\SharedComponents.csproj", "{5D1DBB42-585F-4966-8F60-09129EE3445C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,8 +35,15 @@ Global
 		{AAFF5223-B934-4FE7-BB0B-125085677CD4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAFF5223-B934-4FE7-BB0B-125085677CD4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAFF5223-B934-4FE7-BB0B-125085677CD4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D1DBB42-585F-4966-8F60-09129EE3445C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D1DBB42-585F-4966-8F60-09129EE3445C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D1DBB42-585F-4966-8F60-09129EE3445C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D1DBB42-585F-4966-8F60-09129EE3445C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AF73D718-A655-42CC-94AC-95519AFF5C92}
 	EndGlobalSection
 EndGlobal
