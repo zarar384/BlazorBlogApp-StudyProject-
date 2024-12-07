@@ -6,11 +6,11 @@
 <ul>
     @foreach(var p in posts)
     {
-        <li>@p.Title</li>
+        <li><a href="/Post/@p.Id">@p.Title</a></li>
     }
 </ul>
 
-@code{
+@code{    
     protected List<BlogPost> posts = new();
 
     protected override async Task OnInitializedAsync()
