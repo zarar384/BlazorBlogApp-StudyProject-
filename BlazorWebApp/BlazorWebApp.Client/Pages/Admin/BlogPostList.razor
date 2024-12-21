@@ -1,0 +1,37 @@
+﻿@page "/admin/blogposts"
+@attribute [StreamRendering(true)]
+@inject IBlogApi _api;
+
+<a href="/admin/blogposts/new">New blog posts</a>
+@if(Posts?.Count == 0)
+{
+    <p>No blog posts found</p>
+}
+else if(Posts == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <ul>
+        @foreach(var p in Posts)
+        {
+            <li>
+                @p.PublishDate
+                <a href="/admin/blogposts/@p.Id">@p.Title</a>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<BlogPost>? Posts { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(1000);
+        var numberOfPosts = await _api.GetBlogPostCountAsync();
+        Posts = await _api.GetBlogPostsAsync(numberOfPosts, 0);
+        await base.OnInitializedAsync();
+    }
+}
