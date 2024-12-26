@@ -3,17 +3,16 @@
 @inject IBlogApi _api
 
 <EditForm OnValidSubmit="Save" Model="Item">
-    <DataAnnotationsValidator/>
-    <CustomCssClassProvider ProviderType="BootstrapFieldCssClassProvider"/>
-    <InputText @bind-Value="@Item.Name"/>
-    <ValidationMessage For="@(()=>Item.Name)" />
+    <DataAnnotationsValidator />
+    <CustomCssClassProvider ProviderType="BootstrapFieldCssClassProvider" />
+    <BlogInputText @bind-Value="@Item.Name" Label="Name" />
     <button class="btn btn-success" type="submit">Save</button>
 </EditForm>
 <ItemList Items="Items" DeleteEvent="@Delete" SelectEvent="@Select" ItemType="Tag">
     <ItemTemplate>
         @{
             var item = context as Tag;
-            if(item is not null)
+            if (item is not null)
             {
                 @item.Name
             }
@@ -60,9 +59,9 @@
     {
         try
         {
-            Item = tag;    
+            Item = tag;
         }
-        catch{}
+        catch { }
 
         return Task.CompletedTask;
     }
