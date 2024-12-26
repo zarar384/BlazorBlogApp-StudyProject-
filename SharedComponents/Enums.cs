@@ -10,3 +10,12 @@ public enum AlertStyle
     Light,
     Dark
 }
+
+public enum ButtonType
+{
+    Save,
+    Cancel,
+    Delete,
+    Remove,
+    Select
+}
