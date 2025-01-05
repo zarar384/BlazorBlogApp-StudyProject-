@@ -6,9 +6,11 @@
 @using Markdig;
 @using Microsoft.AspNetCore.Components.Forms
 
-<EditForm Model="Post" OnValidSubmit="SavePost">
+<EditForm Model="Post" OnValidSubmit="SavePostAsync">
     <DataAnnotationsValidator />
     <CustomCssClassProvider ProviderType="BootstrapFieldCssClassProvider" />
+    <BlogNavigationLock @ref="NavigationLock" />
+
     <InputText @bind-Value="Post.Title" />
     <ValidationMessage For="()=> Post.Title" />
     <InputDate @bind-Value="Post.PublishDate" />
@@ -43,6 +45,8 @@
 @((MarkupString)markDownAsHTML)
 
 @code {
+    BlogNavigationLock? NavigationLock { get; set; }
+
     [Parameter]
     public string? Id { get; set; }
     BlogPost Post { get; set; } = new();
@@ -61,7 +65,7 @@
         Post.Tags.Add(tag);
     }
 
-    public async Task SavePost()
+    public async Task SavePostAsync()
     {
         if (!string.IsNullOrEmpty(selectedCategory) && Categories != null)
         {
@@ -73,6 +77,7 @@
         }
 
         await _api.SaveBlogPostAsync(Post);
+        NavigationLock?.CurrentEditContext.MarkAsUnmodified();
         _manager.NavigateTo("/admin/blogposts");
     }
 
