@@ -18,6 +18,7 @@
 
     <h2>@BlogPost.Title</h2>
     @((MarkupString)Markdig.Markdown.ToHtml(BlogPost.Text, pipeline));
+    <Comments BlogPostId="@BlogPostId"/>
 }
 else
 {
