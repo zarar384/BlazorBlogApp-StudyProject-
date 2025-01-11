@@ -1,6 +1,7 @@
 using BlazorWebApp.Components;
 using Data;
 using Data.Models.Interfaces;
+using BlazorWebApp.Endpoints;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,4 +46,5 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(BlazorWebApp.Client._Imports).Assembly)
     .AddAdditionalAssemblies(typeof(SharedComponents.Pages.Home).Assembly);
 
+app.MapBogPostApi();
 app.Run();

@@ -37,7 +37,7 @@
     protected override async Task OnInitializedAsync()
     {
         Model = new Comment { BlogPostId = BlogPostId };
-        comments = await _api.GetCommentsAsync(BlogPostId);
+        comments = await LoadCommentsAsync(BlogPostId);
     }
 
     public async Task ValidSubmitAsync()
@@ -45,6 +45,12 @@
         Model.Id = Guid.NewGuid().ToString();
         Model.Date = DateTime.Now;
         await _api.SaveCommentAsync(Model);
-        comments = await _api.GetCommentsAsync(BlogPostId);
+        comments = await LoadCommentsAsync(BlogPostId);
+    }
+
+    private async Task<List<Comment>> LoadCommentsAsync(string blogPostId)
+    {
+        var fetchedComments = await _api.GetCommentsAsync(blogPostId);
+        return fetchedComments.OrderByDescending(c => c.Date).ToList();
     }
 }
