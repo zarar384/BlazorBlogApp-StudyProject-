@@ -7,7 +7,7 @@ namespace BlazorWebApp.Endpoints
 {
     public static class BlogPostEndpoints
     {
-        public static void MapBogPostApi(this WebApplication app)
+        public static void MapBlogPostApi(this WebApplication app)
         {
             var blogPostsGroup = app.MapGroup("/api/BlogPosts");
             blogPostsGroup.MapGet("", async (IBlogApi api, [FromQuery] int numberofposts, [FromQuery] int startindex) =>

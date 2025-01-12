@@ -46,5 +46,8 @@ app.MapRazorComponents<App>()
     .AddAdditionalAssemblies(typeof(BlazorWebApp.Client._Imports).Assembly)
     .AddAdditionalAssemblies(typeof(SharedComponents.Pages.Home).Assembly);
 
-app.MapBogPostApi();
+app.MapBlogPostApi();
+app.MapCategoryApi();
+app.MapCommentApi();
+app.MapTagApi();
 app.Run();
