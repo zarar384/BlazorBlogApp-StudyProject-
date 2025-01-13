@@ -1,6 +1,5 @@
 ﻿using Data.Models;
 using Data.Models.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BlazorWebApp.Endpoints

@@ -1,7 +1,10 @@
-using BlazorWebApp.Components;
 using Data;
+using BlazorWebApp;
 using Data.Models.Interfaces;
 using BlazorWebApp.Endpoints;
+using BlazorWebApp.Components;
+using Auth0.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Components.Authorization;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,6 +26,14 @@ builder.Services.AddScoped<IBlogApi, BlogApiJsonDirectAccess>();
 
 var app = builder.Build();
 
+builder.Services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenticationStateProvider>();
+builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddAuth0WebAppAuthentication(options =>
+{
+    options.Domain = builder.Configuration["Auth0:Authority"] ?? ""; ;
+    options.ClientId = builder.Configuration["Auth0:ClientId"] ?? ""; ;
+});
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
@@ -40,6 +51,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseAntiforgery();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapRazorComponents<App>()
     .AddInteractiveServerRenderMode()
     .AddInteractiveWebAssemblyRenderMode()
@@ -50,4 +64,6 @@ app.MapBlogPostApi();
 app.MapCategoryApi();
 app.MapCommentApi();
 app.MapTagApi();
+app.MapAuth0Api();
+
 app.Run();
