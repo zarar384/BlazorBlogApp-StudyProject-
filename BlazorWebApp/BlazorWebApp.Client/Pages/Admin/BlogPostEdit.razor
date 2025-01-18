@@ -1,5 +1,6 @@
 ﻿@page "/admin/blogposts/new"
 @page "/admin/blogposts/{Id}"
+@attribute [Authorize]
 @rendermode InteractiveServer
 @inject IBlogApi _api
 @inject NavigationManager _manager

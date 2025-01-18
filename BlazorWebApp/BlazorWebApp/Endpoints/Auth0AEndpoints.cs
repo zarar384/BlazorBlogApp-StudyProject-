@@ -8,10 +8,10 @@ namespace BlazorWebApp.Endpoints
     {
         public static void MapAuth0Api(this WebApplication app)
         {
-            app.MapGet("account/login", async (string redirectUri, HttpContext context) =>
+            app.MapGet("account/login", async (string returnUrl, HttpContext context) =>
             {
                 var authenticationProperties = new LoginAuthenticationPropertiesBuilder()
-                .WithRedirectUri(redirectUri)
+                .WithRedirectUri(returnUrl)
                 .Build();
 
                 await context.ChallengeAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);

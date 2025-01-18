@@ -23,9 +23,6 @@ builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>()
         options.CommentsFolder = "Comments";
     });
 builder.Services.AddScoped<IBlogApi, BlogApiJsonDirectAccess>();
-
-var app = builder.Build();
-
 builder.Services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenticationStateProvider>();
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddAuth0WebAppAuthentication(options =>
@@ -33,6 +30,8 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
     options.Domain = builder.Configuration["Auth0:Authority"] ?? ""; ;
     options.ClientId = builder.Configuration["Auth0:ClientId"] ?? ""; ;
 });
+
+var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

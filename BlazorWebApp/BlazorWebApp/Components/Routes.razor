@@ -1,7 +1,23 @@
 ﻿<Router AppAssembly="typeof(Program).Assembly" 
 AdditionalAssemblies="new[] { typeof(Client._Imports).Assembly, typeof(SharedComponents.Pages.Home).Assembly }">
     <Found Context="routeData">
-        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
-        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="typeof(Layout.MainLayout)" >
+        <Authorizing>
+            <p>
+                We are trying to determine the session state, please wait...
+            </p>
+        </Authorizing>
+        <NotAuthorized>
+            <h1>Sorry</h1>
+            <p>You're not authorized. You need to log in.</p>
+        </NotAuthorized>
+        </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="@routeData" Selector="h1" />
     </Found>
+    <NotFound>
+        <PageTitle>Not found</PageTitle>
+        <LayoutView Layout="@typeof(Layout.MainLayout)">
+            <p role="alert">Sorry, there's nothing at this adress</p>
+        </LayoutView>
+    </NotFound>
 </Router>

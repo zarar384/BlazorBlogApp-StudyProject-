@@ -1,5 +1,6 @@
 ﻿@page "/admin/tags"
 @rendermode InteractiveServer
+@attribute [Authorize]
 @inject IBlogApi _api
 
 <EditForm OnValidSubmit="Save" Model="Item">
