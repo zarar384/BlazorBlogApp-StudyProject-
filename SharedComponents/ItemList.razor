@@ -6,11 +6,11 @@
     <Virtualize Items="@Items" Context="item">
         <tr>
             <td>
-                <button class="btn btn-primary" @onclick="@(()=>{SelectEvent.InvokeAsync(item);})">Select</button>
+                <BlogButton OnClick="@(()=>{SelectEvent.InvokeAsync(item);})">Select</BlogButton>
             </td>
             <td>@ItemTemplate(item)</td>
             <td>
-                <button class="btn btn-danger" @onclick="@(()=>{DeleteEvent.InvokeAsync(item);})">Delete</button>
+                <BlogButton ConfirmMessage="Do you really want to delete this?" OnClick="@(()=>{DeleteEvent.InvokeAsync(item);})">Delete</BlogButton>
             </td>
         </tr>
     </Virtualize>
