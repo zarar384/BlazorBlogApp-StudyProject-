@@ -2,17 +2,28 @@
 @rendermode InteractiveServer
 @using Data.Models.Interfaces
 @using Data.Models
+@using Markdig
 @inject IBlogApi _api
 
-<ul>
-    <Virtualize ItemsProvider="LoadPosts" Context="p">
-        <li><a href="/Post/@p.Id">@p.Title</a></li>
-    </Virtualize>
-</ul>
+<Virtualize ItemsProvider="LoadPosts" Context="p">
+    <article>
+        <h2>@p.Title</h2>
+        @((MarkupString)Markdig.Markdown.ToHtml(new string(p.Text.Take(100).ToArray()), pipeline))
+    </article>
+    <li><a href="/Post/@p.Id">@p.Title</a></li>
+</Virtualize>
 
 @code{
-    public int totalBlogposts { get; set; }
+    MarkdownPipeline pipeline;
+    protected override Task OnInitializedAsync()
+    {
+        pipeline = new MarkdownPipelineBuilder()
+            .UseEmojiAndSmiley()
+            .Build();
+        return base.OnInitializedAsync();
+    }
 
+    public int totalBlogposts { get; set; }
     private async ValueTask<ItemsProviderResult<BlogPost>> LoadPosts(ItemsProviderRequest request)
     {
         if(totalBlogposts == 0)
