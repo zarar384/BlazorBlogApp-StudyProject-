@@ -1,0 +1,23 @@
+﻿@rendermode InteractiveServer
+@page "/HighChartTest"
+<Highchart Json="@chartJson">
+</Highchart>
+
+@code {
+    @code {
+        string chartJson = @" {
+            chart: { type: 'pie' },
+            series: [{
+                data: [{
+                    name: 'One Piece is real',
+                    color:'red',
+                    y: 80,
+                }, {
+                    name: 'Blackbeard will become the king of pirates',
+                    color:'yellow',
+                    y: 80
+                }]
+            }]
+        }";
+    }
+}
