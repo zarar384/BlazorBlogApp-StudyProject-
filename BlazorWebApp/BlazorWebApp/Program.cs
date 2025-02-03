@@ -1,8 +1,10 @@
 using Data;
 using BlazorWebApp;
+using BlazorWebApp.Services;
 using Data.Models.Interfaces;
 using BlazorWebApp.Endpoints;
 using BlazorWebApp.Components;
+using SharedComponents.Interfaces;
 using Auth0.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components.Authorization;
 
@@ -12,6 +14,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents()
     .AddInteractiveWebAssemblyComponents();
+
+builder.Services.AddScoped<IBrowserStorage, BlogProtectedBrowserStorage>();
 
 builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>()
     .Configure(options =>
