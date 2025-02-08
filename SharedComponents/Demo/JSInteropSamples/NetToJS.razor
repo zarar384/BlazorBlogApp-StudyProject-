@@ -1,0 +1,18 @@
+﻿@page "/nettojswasm"
+@using System.Runtime.InteropServices.JavaScript
+
+<h3>Call JS from .NET</h3>
+<button @onclick="ShowAlert">Show Alert</button>
+
+@code {
+    protected async void ShowAlert()
+    {
+        ShowAlert(".NET");
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await JSHost.ImportAsync("nettojs", "../JSInteropSamples/NetToJS.razor.js");
+    }
+
+}

@@ -20,7 +20,7 @@
     {
         if (!string.IsNullOrEmpty(Json))
         {
-            jsmodule = await jSRuntime.InvokeAsync<IJSObjectReference>("import", "/_content/Components/SharedComponents/HighChart.razor.js");
+            jsmodule = await jSRuntime.InvokeAsync<IJSObjectReference>("import", "/_content/SharedComponents/Demo/Highchart.razor.js");
             await jsmodule.InvokeAsync<string>("loadHighchart", new object[]{id, Json});
         }
 
