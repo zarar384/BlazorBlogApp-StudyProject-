@@ -16,7 +16,7 @@ namespace BlazorWebApp.Client.Services
             await Storage.RemoveItemAsync(key);
         }
 
-        public async Task<T?> GetAsnyc<T>(string key)
+        public async Task<T?> GetAsync<T>(string key)
         {
             return await Storage.GetItemAsync<T>(key);
         }

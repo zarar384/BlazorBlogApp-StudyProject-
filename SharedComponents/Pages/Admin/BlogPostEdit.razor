@@ -8,6 +8,8 @@
 @inject SharedComponents.Interfaces.IBrowserStorage _storage
 @using Markdig;
 @using Microsoft.AspNetCore.Components.Forms
+@using SharedComponents.Interfaces
+@inject IBlogNotificationService _notificationService
 
 <EditForm Model="Post" OnValidSubmit="SavePostAsync">
     <DataAnnotationsValidator />
@@ -122,7 +124,7 @@
     {
         if(firstRender && string.IsNullOrEmpty(Id))
         {
-            var saved = await _storage.GetAsnyc<BlogPost>("EditCurrentPost");
+            var saved = await _storage.GetAsync<BlogPost>("EditCurrentPost");
             if(saved != null)
             {
                 Post = saved;
@@ -136,6 +138,7 @@
     {
         if (!string.IsNullOrEmpty(Post.Text))
         {
+            await _notificationService.SendNotification(Post);
             markDownAsHTML = Markdig.Markdown.ToHtml(Post.Text, pipeline);
             if (string.IsNullOrEmpty(Post.Id))
             {

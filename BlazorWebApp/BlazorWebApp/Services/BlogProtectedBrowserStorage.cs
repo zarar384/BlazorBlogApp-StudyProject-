@@ -5,26 +5,27 @@ namespace BlazorWebApp.Services
 {
     public class BlogProtectedBrowserStorage : IBrowserStorage
     {
-        ProtectedBrowserStorage Storage { get; set; }
-        public BlogProtectedBrowserStorage(ProtectedBrowserStorage storage)
+        private readonly ProtectedSessionStorage _storage;
+
+        public BlogProtectedBrowserStorage(ProtectedSessionStorage storage)
         {
-            Storage = storage;
+            _storage = storage;
         }
 
         public async Task DeleteAsync(string key)
         {
-            await Storage.DeleteAsync(key);
+            await _storage.DeleteAsync(key);
         }
 
-        public async Task<T?> GetAsnyc<T>(string key)
+        public async Task<T?> GetAsync<T>(string key)
         {
-            var value = await Storage.GetAsync<T>(key);
-            return value.Success ? value.Value : default(T?);
+            var value = await _storage.GetAsync<T>(key);
+            return value.Success ? value.Value : default;
         }
 
         public async Task SetAsync(string key, object value)
         {
-            await Storage.SetAsync(key, value);
+            await _storage.SetAsync(key, value);
         }
     }
 }

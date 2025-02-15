@@ -29,6 +29,7 @@ builder.Services.AddOptions<BlogApiJsonDirectAccessSetting>()
 builder.Services.AddScoped<IBlogApi, BlogApiJsonDirectAccess>();
 builder.Services.AddScoped<AuthenticationStateProvider, PersistingServerAuthenticationStateProvider>();
 builder.Services.AddCascadingAuthenticationState();
+builder.Services.AddSingleton<IBlogNotificationService, BlazorServerBlogNotificationService>();
 builder.Services.AddAuth0WebAppAuthentication(options =>
 {
     options.Domain = builder.Configuration["Auth0:Authority"] ?? ""; ;

@@ -1,7 +1,11 @@
 ﻿@page "/post/{BlogPostId}"
+@rendermode InteractiveServer
 @inject IBlogApi _api;
 @inject NavigationManager _navman;
 @using Markdig;
+@using SharedComponents.Interfaces
+@inject IBlogNotificationService _notificationService
+@implements IDisposable
 
 @if(BlogPost!=null){
     <PageTitle>@BlogPost.Title</PageTitle>
@@ -36,9 +40,24 @@ else
         await base.OnParametersSetAsync();
     }
 
+    void IDisposable.Dispose()
+    {
+        _notificationService.BlogPostChanged -= PostChanged;
+    }
+
+    private async void PostChanged(BlogPost post)
+    {
+        if(BlogPost?.Id == post.Id)
+        {
+            BlogPost = post;
+            await InvokeAsync(() => this.StateHasChanged());
+        }
+    }
+
     MarkdownPipeline pipeline;
     protected override Task OnInitializedAsync()
     {
+        _notificationService.BlogPostChanged += PostChanged;
         pipeline = new MarkdownPipelineBuilder()
             .UseEmojiAndSmiley()
             .Build();
