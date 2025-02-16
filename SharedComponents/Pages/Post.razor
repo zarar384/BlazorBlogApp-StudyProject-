@@ -1,5 +1,6 @@
 ﻿@page "/post/{BlogPostId}"
-@rendermode InteractiveServer
+@* @rendermode InteractiveServer *@
+@rendermode InteractiveWebAssembly
 @inject IBlogApi _api;
 @inject NavigationManager _navman;
 @using Markdig;
