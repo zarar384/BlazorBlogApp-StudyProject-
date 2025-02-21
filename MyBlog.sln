@@ -13,6 +13,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Models", "Data.Models\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SharedComponents", "SharedComponents\SharedComponents.csproj", "{5D1DBB42-585F-4966-8F60-09129EE3445C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlazorWebApp.Test", "BlazorWebApp.Test\BlazorWebApp.Test.csproj", "{284D8EE7-F24F-49B8-8D7B-FA4332013954}"
+	ProjectSection(ProjectDependencies) = postProject
+		{5D1DBB42-585F-4966-8F60-09129EE3445C} = {5D1DBB42-585F-4966-8F60-09129EE3445C}
+		{802733EC-2B76-4335-A681-B26281DD0A05} = {802733EC-2B76-4335-A681-B26281DD0A05}
+		{AAFF5223-B934-4FE7-BB0B-125085677CD4} = {AAFF5223-B934-4FE7-BB0B-125085677CD4}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +46,10 @@ Global
 		{5D1DBB42-585F-4966-8F60-09129EE3445C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5D1DBB42-585F-4966-8F60-09129EE3445C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5D1DBB42-585F-4966-8F60-09129EE3445C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{284D8EE7-F24F-49B8-8D7B-FA4332013954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{284D8EE7-F24F-49B8-8D7B-FA4332013954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{284D8EE7-F24F-49B8-8D7B-FA4332013954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{284D8EE7-F24F-49B8-8D7B-FA4332013954}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

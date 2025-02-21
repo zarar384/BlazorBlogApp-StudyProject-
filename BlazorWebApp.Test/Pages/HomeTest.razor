@@ -1,0 +1,22 @@
+﻿@using SharedComponents.Pages
+@using Data.Models.Interfaces
+@using SharedComponents.ReusableComponents
+@inherits TestContext
+
+
+@code {
+    public HomeTest()
+    {
+        Services.AddScoped<IBlogApi, BlogApiMock>();
+    }
+
+    [Fact(DisplayName ="Checks if the Home component shows 10 posts")]
+    public void Shows10Blogposts()
+    {
+        // Act
+        var cut = Render(@<Home/>);
+
+        // Assert that it has 10 article tags (each representing a blogposts)
+        Assert.Equal(10, cut.FindAll("article").Count());
+    }
+}
