@@ -1,0 +1,21 @@
+﻿@inherits TestContext
+@using Bunit
+@using SharedComponents;
+@using SharedComponents.ReusableComponents;
+
+@code {
+    [Fact]
+    public void AlertStyleTest()
+    {
+        AlertStyle style = AlertStyle.Primary;
+        var cut = Render(
+            @<Alert Style="@style">
+                <ChildContent>
+                    <b>test</b>
+                </ChildContent>
+            </Alert>
+        );
+
+       cut.MarkupMatches("""<div class="alert alert-primary" role="alert"><b>test</b></div>""");
+    }
+}
