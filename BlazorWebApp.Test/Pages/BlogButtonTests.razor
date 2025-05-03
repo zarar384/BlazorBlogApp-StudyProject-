@@ -1,0 +1,17 @@
+﻿@inherits TestContext
+@using SharedComponents.ReusableComponents;
+
+@code {
+    [Fact(DisplayName = "Test js method 'showConfirm' if called upon using JSInterop")]
+    public void ShouldShowConfirm()
+    {
+        var moduleInterop = this.JSInterop.SetupModule("/_content/SharedComponents/ReusableComponents/BlogButton.razor.js");
+        moduleInterop.Setup<bool>("showConfirm", "test").SetResult(true);
+        var cut = Render(@<BlogButton OnClick="()=> {}" ConfirmMessage="test"/>);
+
+        var buttons = cut.FindAll("button");
+        buttons.First().Click();
+
+        JSInterop.VerifyInvoke("showConfirm");
+    }
+}
