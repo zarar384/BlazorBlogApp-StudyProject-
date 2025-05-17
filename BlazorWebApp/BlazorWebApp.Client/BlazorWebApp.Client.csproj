@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\angularproject.client\prerendered-routes.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Blazored.SessionStorage" Version="2.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.CustomElements" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="8.0.11" />
@@ -20,6 +24,14 @@
   <ItemGroup>
     <ProjectReference Include="..\..\SharedComponents\SharedComponents.csproj" />
     <ProjectReference Include="..\..\WebCustomElements\WebCustomElements.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\angularproject.client\prerendered-routes.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\angularproject.client\browser\" />
   </ItemGroup>
 
 </Project>
