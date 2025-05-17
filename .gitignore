@@ -363,3 +363,6 @@ MigrationBackup/
 FodyWeavers.xsd
 /BlazorWebApp/BlazorWebApp/appsettings.json
 /BlazorWebApp/BlazorWebApp.Client/wwwroot/appsettings.json
+/AngularProject/angularproject.client/.vscode
+/AngularProject/angularproject.client/.gitignore
+/AngularProject/angularproject.client/README.md

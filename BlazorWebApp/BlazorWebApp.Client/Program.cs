@@ -3,10 +3,14 @@ using BlazorWebApp.Client;
 using BlazorWebApp.Client.Services;
 using Data.Models.Interfaces;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using SharedComponents.Interfaces;
+using WebCustomElements.Components;
+
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+builder.RootComponents.RegisterCustomElement<Counter>("my-blazor-counter");
 
 builder.Services.AddAuthorizationCore();
 builder.Services.AddCascadingAuthenticationState();
