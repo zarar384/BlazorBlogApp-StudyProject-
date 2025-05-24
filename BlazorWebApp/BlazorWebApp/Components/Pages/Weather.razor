@@ -44,8 +44,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        _sub = AppState.RegisterOnPersisting(PersistState);
-
         if (AppState.TryTakeFromJson<WeatherForecast[]>("weatherdata", out var stored))
         {
             forecasts = stored;
@@ -65,6 +63,8 @@ else
                     Summary = summaries[Random.Shared.Next(summaries.Length)]
                 }).ToArray();
         }
+
+        _sub = AppState.RegisterOnPersisting(PersistState);
     }
 
     private Task PersistState()

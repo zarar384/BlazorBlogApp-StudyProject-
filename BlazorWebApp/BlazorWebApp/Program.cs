@@ -13,8 +13,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents()
+    .AddInteractiveServerComponents(options =>
+    {
+        if (builder.Environment.IsDevelopment() || builder.Environment.EnvironmentName == "Internal")
+        {
+            options.DetailedErrors = true;
+        }
+    })
     .AddInteractiveWebAssemblyComponents();
+
 
 builder.Services.AddScoped<IBrowserStorage, BlogProtectedBrowserStorage>();
 builder.Services.AddSignalR();
